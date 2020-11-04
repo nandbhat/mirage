@@ -1,6 +1,7 @@
 @import "./styles/custom_ant.css";
 
 .App {
-  text-align: center;
-  position: relative;
+  box-sizing: border-box;
+  min-height: 100vh;
+  min-width: 100vw;
 }

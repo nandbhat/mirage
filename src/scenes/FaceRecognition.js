@@ -42,13 +42,7 @@ const FaceDetection = () => {
   runFacemesh();
   return (
     <>
-      <div
-        style={{
-          position: "relative",
-          height: "1vh",
-          width: "1vw",
-        }}
-      >
+      <div className="cam-container">
         <Webcam ref={webcamRef} className="webcam" />
         <canvas ref={canvasRef} className="webcam" />
       </div>

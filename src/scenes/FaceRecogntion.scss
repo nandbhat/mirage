@@ -1,11 +1,13 @@
 .webcam {
   position: absolute;
   z-index: 9;
-  left: 0;
-  right: 0;
   text-align: center;
   width: 640;
   height: 480;
-  margin: auto;
+}
+.cam-container {
+  position: relative;
+  min-height: 100vh;
+  display: grid;
   place-items: center;
 }
