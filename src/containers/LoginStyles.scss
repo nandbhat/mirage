@@ -1,0 +1,10 @@
+.login {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+
+  .login__input {
+    // max-width: 60rem;
+    min-width: 30vw;
+  }
+}
