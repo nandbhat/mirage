@@ -8,9 +8,13 @@ import actionTypes from "./actionTypes";
 function* loginSaga(action) {
   console.log("Log NB login");
   try {
-    const res = yield axios.post(normalizeUrl(`${getBaseUrl()}/api/pass`), {
-      passCode: action.payload,
-    });
+    const res = yield axios.post(
+      // TODO use redirect api when netlify redirect is fixed
+      normalizeUrl(`${getBaseUrl()}/.netlify/functions/pass`),
+      {
+        passCode: action.payload,
+      }
+    );
     if (res?.status === 200) {
       yield put(loginSuccess());
     } else {
