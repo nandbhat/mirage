@@ -19,3 +19,9 @@ code {
 * {
   box-sizing: border-box;
 }
+
+:root {
+  --primary-dark: #1e90ff;
+  --primary-light: #95c8fb;
+  --secondary-light: #ffffff;
+}
