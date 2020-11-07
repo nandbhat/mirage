@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "antd";
 import { withRouter } from "react-router-dom";
-import { Paths } from "../utils/constants/paths";
+import { Paths } from "../helpers/constants/paths";
 const Home = ({ history }) => {
   return (
     <>

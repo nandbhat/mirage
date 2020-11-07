@@ -3,19 +3,30 @@ import "./App.css";
 import FaceRecognition from "./scenes/FaceRecognition";
 import Home from "./scenes/Home";
 import NotFound from "./scenes/NotFound";
+import Login from "./scenes/Login";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Paths } from "./utils/constants/paths";
+import { Paths } from "./helpers/constants/paths";
+import Auth from "./hoc/auth";
+import { initAxios } from "./helpers/apis/axios";
+import MainContainer from "./containers/Main";
 
+initAxios();
 function App() {
   return (
     <div className="App">
-      <Router>
-        <Switch>
-          <Route exact path={Paths.HOME} component={Home} />
-          <Route path={Paths.FACIAL_RECOGNITION} component={FaceRecognition} />
-          <Route default component={NotFound} />
-        </Switch>
-      </Router>
+      <MainContainer>
+        <Router>
+          <Switch>
+            <Route exact path={Paths.HOME} component={Auth(Home)} />
+            <Route
+              path={Paths.FACIAL_RECOGNITION}
+              component={Auth(FaceRecognition)}
+            />
+            <Route path={Paths.LOGIN} component={Login} />
+            <Route default component={Auth(NotFound)} />
+          </Switch>
+        </Router>
+      </MainContainer>
     </div>
   );
 }
