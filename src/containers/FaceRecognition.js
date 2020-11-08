@@ -1,24 +1,32 @@
 import React, { useRef } from "react";
-import * as facemesh from "@tensorflow-models/facemesh";
+import { Switch } from "antd";
+
+import * as faceLandmarksDetection from "@tensorflow-models/face-landmarks-detection";
 import Webcam from "react-webcam";
 import "./FaceRecognitionStyles.scss";
 import { drawMesh } from "../helpers/facemesh/drawFacemesh";
+require("@tensorflow/tfjs-backend-webgl");
 
 const FaceDetection = () => {
   const canvasRef = useRef(null);
   const webcamRef = useRef(null);
+  const showLandmarksRef = useRef(false);
 
-  const runFacemesh = async () => {
-    const net = await facemesh.load({
-      inputResolution: { width: 640, height: 480 },
-      scale: 0.5,
-    });
+  const runFacialLandmarkDetection = async () => {
+    const model = await faceLandmarksDetection.load(
+      faceLandmarksDetection.SupportedPackages.mediapipeFacemesh,
+      {
+        maxFaces: 1,
+        shouldLoadIrisModel: true,
+      }
+    );
+
     setInterval(() => {
-      detect(net);
-    }, 100);
+      detect(model);
+    }, 10);
   };
 
-  const detect = async (net) => {
+  const detect = async (model) => {
     if (webcamRef.current && webcamRef?.current?.video?.readyState === 4) {
       // Video properties
       const video = webcamRef.current.video;
@@ -32,19 +40,46 @@ const FaceDetection = () => {
       // Set canvas width
       canvasRef.current.width = videoWidth;
       canvasRef.current.height = videoHeight;
-
-      //Make detections
-      const face = await net.estimateFaces(video);
       const ctx = canvasRef.current.getContext("2d");
-      drawMesh(face, ctx);
+      //Make detections
+      if (showLandmarksRef.current) {
+        const predictions = await model.estimateFaces({
+          input: video,
+          flipHorizontal: true,
+        });
+        drawMesh(predictions, ctx);
+      } else {
+        ctx.clearRect(0, 0, videoWidth, videoHeight);
+      }
     }
   };
-  runFacemesh();
+
+  runFacialLandmarkDetection();
   return (
     <>
-      <div className="cam-container">
-        <Webcam ref={webcamRef} className="webcam" />
-        <canvas ref={canvasRef} className="webcam" />
+      <div className="facerecognition">
+        <div className="facerecognition__container">
+          <div className="heading-2">Facial Landmark Detection</div>
+          <div className="facerecognition__container__overlay">
+            <Webcam
+              ref={webcamRef}
+              className="facerecognition__container__overlay__webcam"
+              mirrored
+            />
+            <canvas
+              ref={canvasRef}
+              className="facerecognition__container__overlay__canvas"
+            />
+          </div>
+          <Switch
+            onChange={() => {
+              // .current = !showLandmarksRef?.current;
+              showLandmarksRef.current = !showLandmarksRef.current;
+            }}
+            checkedChildren="Show Landmark"
+            unCheckedChildren="Hide Landmark"
+          />
+        </div>
       </div>
     </>
   );

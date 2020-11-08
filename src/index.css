@@ -25,3 +25,8 @@ code {
   --primary-light: #95c8fb;
   --secondary-light: #ffffff;
 }
+
+.heading-2 {
+  font-size: 1.5rem;
+  font-family: "Poppins", sans-serif;
+}
