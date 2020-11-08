@@ -1,0 +1,17 @@
+.dashboard {
+  min-width: 100vw;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+
+  .dashboard__content {
+    max-width: 50vw;
+    display: grid;
+    grid-template-columns: 1fr;
+
+    .dashboard__content__column__header {
+      font-size: 2rem;
+      font-family: "Poppins", sans-serif;
+    }
+  }
+}

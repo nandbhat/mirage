@@ -1,13 +1,31 @@
-.webcam {
-  position: absolute;
-  z-index: 9;
-  text-align: center;
-  width: 640;
-  height: 480;
-}
-.cam-container {
+.facerecognition {
   position: relative;
   min-height: 100vh;
+  min-width: 100vw;
   display: grid;
   place-items: center;
+
+  .facerecognition__container {
+    grid-template-columns: 1fr;
+    display: grid;
+    justify-items: center;
+    row-gap: 2rem;
+    align-items: center;
+    position: relative;
+
+    .facerecognition__container__overlay {
+      position: relative;
+      width: 640px;
+      height: 480px;
+      .facerecognition__container__overlay__webcam {
+        width: 640;
+        height: 480;
+        z-index: 9;
+        position: absolute;
+      }
+      .facerecognition__container__overlay__canvas {
+        @extend .facerecognition__container__overlay__webcam;
+      }
+    }
+  }
 }
