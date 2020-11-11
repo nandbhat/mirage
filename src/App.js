@@ -9,6 +9,7 @@ import { Paths } from "./helpers/constants/paths";
 import Auth from "./hoc/auth";
 import { initAxios } from "./helpers/apis/axios";
 import MainContainer from "./containers/Main";
+import PoseDetection from "./scenes/PoseDetection";
 
 initAxios();
 function App() {
@@ -23,6 +24,10 @@ function App() {
               component={Auth(FaceRecognition)}
             />
             <Route path={Paths.LOGIN} component={Login} />
+            <Route
+              path={Paths.POSE_DETECTION}
+              component={Auth(PoseDetection)}
+            />
             <Route default component={Auth(NotFound)} />
           </Switch>
         </Router>

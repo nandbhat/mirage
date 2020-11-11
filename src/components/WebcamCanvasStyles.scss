@@ -1,11 +1,11 @@
-.facerecognition {
+.model {
   position: relative;
   min-height: 100vh;
   min-width: 100vw;
   display: grid;
   place-items: center;
 
-  .facerecognition__container {
+  .model__container {
     grid-template-columns: 1fr;
     display: grid;
     justify-items: center;
@@ -13,18 +13,18 @@
     align-items: center;
     position: relative;
 
-    .facerecognition__container__overlay {
+    .model__container__overlay {
       position: relative;
       width: 640px;
       height: 480px;
-      .facerecognition__container__overlay__webcam {
+      .model__container__overlay__webcam {
         width: 640;
         height: 480;
         z-index: 9;
         position: absolute;
       }
-      .facerecognition__container__overlay__canvas {
-        @extend .facerecognition__container__overlay__webcam;
+      .model__container__overlay__canvas {
+        @extend .model__container__overlay__webcam;
       }
     }
   }
