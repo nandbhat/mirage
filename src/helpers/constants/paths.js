@@ -3,4 +3,5 @@ export const Paths = Object.freeze({
   FACIAL_RECOGNITION: "/facial-landmark-detection",
   LOGIN: "/login",
   POSE_DETECTION: "/pose-detection",
+  BODY_SEGMENTATION: "/body-segmentation",
 });

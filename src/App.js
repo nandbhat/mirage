@@ -10,6 +10,7 @@ import Auth from "./hoc/auth";
 import { initAxios } from "./helpers/apis/axios";
 import MainContainer from "./containers/Main";
 import PoseDetection from "./scenes/PoseDetection";
+import BodySegmentation from "./scenes/BodySegmentation";
 
 initAxios();
 function App() {
@@ -27,6 +28,10 @@ function App() {
             <Route
               path={Paths.POSE_DETECTION}
               component={Auth(PoseDetection)}
+            />
+            <Route
+              path={Paths.BODY_SEGMENTATION}
+              component={Auth(BodySegmentation)}
             />
             <Route default component={Auth(NotFound)} />
           </Switch>
