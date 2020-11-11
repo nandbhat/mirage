@@ -16,6 +16,7 @@ const Dashboard = () => {
             path={Paths.FACIAL_RECOGNITION}
           />
           <Link name="Pose Detection" path={Paths.POSE_DETECTION} />
+          <Link name="Body Segmentation" path={Paths.BODY_SEGMENTATION} />
         </div>
       </div>
     </div>
