@@ -15,6 +15,7 @@ const Dashboard = () => {
             name="Facial Landmark Detection"
             path={Paths.FACIAL_RECOGNITION}
           />
+          <Link name="Pose Detection" path={Paths.POSE_DETECTION} />
         </div>
       </div>
     </div>
